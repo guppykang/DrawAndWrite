@@ -34,6 +34,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
+        setupLayout()
         
         // Do any additional setup after loading the view, typically from a nib.
     }
