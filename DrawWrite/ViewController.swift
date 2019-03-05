@@ -16,6 +16,23 @@ class ViewController: UIViewController {
     var opacity: CGFloat = 1.0
     var swiped = false
     
+    let resetButton : UIButton = {
+        let button = UIButton(type: .system)
+        
+        button.setTitle("Reset", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        
+        button.addTarget(self, action: #selector(handleResetButton), for: .touchUpInside)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    @objc func handleResetButton() {
+
+        mainImageView.image =  nil
+        
+    }
     
     let tempImageView: UIImageView = {
         let theImageView = UIImageView()
@@ -23,7 +40,7 @@ class ViewController: UIViewController {
         return theImageView
     }()
     
-    let mainImageView: UIImageView = {
+    var mainImageView: UIImageView = {
         let theImageView = UIImageView()
         theImageView.translatesAutoresizingMaskIntoConstraints = false //You need to call this property so the image is added to your view
         return theImageView
@@ -42,6 +59,10 @@ class ViewController: UIViewController {
     func setupLayout() {
         view.addSubview(tempImageView)
         view.addSubview(mainImageView)
+        view.addSubview(resetButton)
+        
+        resetButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
+        resetButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         tempImageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tempImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
